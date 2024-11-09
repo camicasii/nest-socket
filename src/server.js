@@ -29,6 +29,12 @@ io.on('connection', (socket) => {
         // Notificar solo al cliente de su propio nuevo contador
         socket.emit('update', clients[socket.id]);
     });
+    // Manejar el evento de Ping
+    socket.on('ping', () => {
+        clients[socket.id] += 1; // Aumentar contador
+        socket.emit('pong', clients[socket.id]); // Responder con Pong
+    });
+
     // Manejar la desconexión del cliente
     socket.on('disconnect', () => {
         console.log('Cliente desconectado:', socket.id);
