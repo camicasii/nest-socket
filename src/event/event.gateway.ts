@@ -19,7 +19,7 @@ import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { Socket } from 'dgram';
 
-@WebSocketGateway(3000,
+@WebSocketGateway(81,
   {
     
     namespace: 'event',
