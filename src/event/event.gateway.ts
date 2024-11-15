@@ -23,7 +23,7 @@ import { Server, WebSocket } from 'ws';
   {
     
     // namespace: 'event',
-    // transports: ['websocket'],
+    transports: ['websocket'],
 
      
     cors: {
@@ -44,6 +44,7 @@ export class EventGateway  implements OnGatewayInit, OnGatewayConnection, OnGate
  
   handleConnection(client: any, ...args: any[]) {
     console.log('Client Connected');
+    client.send(JSON.stringify({ event: 'connection', data: 'Connected to server' }));
   }
   handleDisconnect(client: any) {
     console.log('Client Disconnected');
@@ -55,8 +56,11 @@ export class EventGateway  implements OnGatewayInit, OnGatewayConnection, OnGate
     console.log(createEventDto);
     
     // return this.eventService.create(createEventDto);
-  client.send("pong");
-    return "pong";
+  // client.send("pong");
+    // return "pong";
+    const response = JSON.stringify({ event: 'pong', data: 'pong' });
+    client.send(response);
+    return response;
   }
 
 
