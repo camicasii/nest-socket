@@ -7,5 +7,6 @@ import { EventModule } from './event/event.module';
   imports: [EventModule],
   controllers: [AppController],
   providers: [AppService],
+  
 })
 export class AppModule {}
