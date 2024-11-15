@@ -1,11 +1,21 @@
 import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
+import cors from 'cors';
 
 // Configurando la aplicación
 const app = express();
+app.use(cors({
+    origin: '*',
+}));
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server,{
+    cors: {
+        origin: '*',
+    },
+
+
+});
 
 const PORT = process.env.PORT || 3000;
 
