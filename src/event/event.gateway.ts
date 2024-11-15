@@ -20,6 +20,7 @@ import { UpdateEventDto } from './dto/update-event.dto';
 import { Server, WebSocket } from 'ws';
 
 @WebSocketGateway(
+  3001,
   {
     
     // namespace: 'event',
