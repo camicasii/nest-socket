@@ -14,7 +14,13 @@ import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { Socket } from 'dgram';
 
-@WebSocketGateway()
+@WebSocketGateway(
+  {
+    cors: {
+      origin: '*',
+    },
+  }
+)
 export class EventGateway {
   @WebSocketServer()
   server: Server;
