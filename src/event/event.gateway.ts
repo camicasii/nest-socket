@@ -13,18 +13,19 @@ import {
 
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Server } from 'socket.io';
+// import { Server } from 'socket.io';
 import { EventService } from './event.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
-import { Socket } from 'dgram';
+import { Server, WebSocket } from 'ws';
 
 @WebSocketGateway(81,
   {
     
-    namespace: 'event',
+    // namespace: 'event',
     transports: ['websocket'],
-    
+
+     
     cors: {
       origin: '*',
     },
@@ -49,12 +50,12 @@ export class EventGateway  implements OnGatewayInit, OnGatewayConnection, OnGate
   }
 
   @SubscribeMessage('ping')
-  ping(@MessageBody() createEventDto: any,  @ConnectedSocket() client: Socket,) {
+  ping(@MessageBody() createEventDto: any,  @ConnectedSocket() client: WebSocket) {
 
     console.log(createEventDto);
     
     // return this.eventService.create(createEventDto);
-  client.emit('pong', 'pong');
+  client.send("pong");
     return "pong";
   }
 
