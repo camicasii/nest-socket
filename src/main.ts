@@ -11,7 +11,7 @@ async function bootstrap() {
     // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     // allowedHeaders: 'Content-Type, Accept',
   }); // Enable CORS
-  app.useWebSocketAdapter(new WsAdapter(app));
+  app.useWebSocketAdapter(new IoAdapter(app));
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
