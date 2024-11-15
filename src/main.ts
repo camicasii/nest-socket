@@ -7,8 +7,8 @@ async function bootstrap() {
   // app.useWebSocketAdapter(newa);
   app.enableCors({
     origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: 'Content-Type, Accept',
+    // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    // allowedHeaders: 'Content-Type, Accept',
   }); // Enable CORS
   await app.listen(process.env.PORT ?? 3000);
 }
