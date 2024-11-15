@@ -10,7 +10,7 @@ RUN apk update && apk upgrade && apk add --no-cache git
 WORKDIR /usr/src/app
 
 # Copiar archivos necesarios para instalar dependencias
-COPY package.json package-lock.json ./
+COPY mineminer/package.json mineminer.package-lock.json ./mineminer/
 # COPY prisma ./prisma
 
 
