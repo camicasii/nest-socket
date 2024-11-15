@@ -13,11 +13,11 @@ import {
 
 // import { from, Observable } from 'rxjs';
 // import { map } from 'rxjs/operators';
-// import { Server } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 import { EventService } from './event.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
-import { Server, WebSocket } from 'ws';
+// import { Server, WebSocket } from 'ws';
 
 @WebSocketGateway(
   // 3000,
@@ -44,16 +44,19 @@ export class EventGateway  implements OnGatewayInit, OnGatewayConnection, OnGate
     console.log('Server Initialized Successfully');
   }
  
-  handleConnection(client: any, ...args: any[]) {
+  handleConnection(client: Socket, ...args: any[]) {
     console.log('Client Connected');
-    client.send(JSON.stringify({ event: 'connection', data: 'Connected to server' }));
+    
+    // client.emit(JSON.stringify({ event: 'connection', data: 'Connected to server '  }));
+    client.emit('connection', {data:'Connected to server'});
+    
   }
   handleDisconnect(client: any) {
     console.log('Client Disconnected');
   }
 
   @SubscribeMessage('ping')
-  ping(@MessageBody() createEventDto: any,  @ConnectedSocket() client: WebSocket) {
+  ping(@MessageBody() createEventDto: any,  @ConnectedSocket() client: Socket) {
 
     console.log(createEventDto);
     
@@ -61,7 +64,8 @@ export class EventGateway  implements OnGatewayInit, OnGatewayConnection, OnGate
   // client.send("pong");
     // return "pong";
     const response = JSON.stringify({ event: 'pong', data: 'pong' });
-    client.send(response);
+    // client.send(response);
+    client.emit('pong', {data:'pong'});
     return response;
   }
 
