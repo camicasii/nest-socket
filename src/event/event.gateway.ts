@@ -11,8 +11,8 @@ import {
 } from '@nestjs/websockets';
 
 
-import { from, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+// import { from, Observable } from 'rxjs';
+// import { map } from 'rxjs/operators';
 // import { Server } from 'socket.io';
 import { EventService } from './event.service';
 import { CreateEventDto } from './dto/create-event.dto';
