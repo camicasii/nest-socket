@@ -19,11 +19,11 @@ import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { Server, WebSocket } from 'ws';
 
-@WebSocketGateway(81,
+@WebSocketGateway(8080,
   {
     
     // namespace: 'event',
-    transports: ['websocket'],
+    // transports: ['websocket'],
 
      
     cors: {
